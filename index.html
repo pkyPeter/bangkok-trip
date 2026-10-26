@@ -713,6 +713,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .leaflet-container .leaflet-control-attribution{background:var(--surface);color:var(--muted);opacity:.92}
 .leaflet-container .leaflet-control-attribution a{color:var(--muted)}
 
+.leaflet-tile-pane .tiles-dark{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9) saturate(.6)}
 </style>
 </head>
 <body>
@@ -915,8 +916,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
   var bbItin=document.getElementById('bbItin'), bbMap=document.getElementById('bbMap');
   var chips=[].slice.call(document.querySelectorAll('.chip'));
   var map=null, tile=null, tileDark=null, group=null, markers={}, curDay='all', view='itin', savedY=0, hlTimer=null, lastRow={}, gmaps={};
-  var TILE_L='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-  var TILE_D='https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}{r}.png';
+  var TILE_L='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var TILE_D=TILE_L;
   var mq=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
 
   [].forEach.call(document.querySelectorAll('.pl[data-place]'),function(s){
@@ -934,7 +935,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var dark=isDark();
     if(tile&&tileDark===dark) return;
     if(tile) map.removeLayer(tile);
-    tile=L.tileLayer(dark?TILE_D:TILE_L,{attribution:'&copy; OpenStreetMap &copy; CARTO',subdomains:'abcd',maxZoom:20}).addTo(map);
+    tile=L.tileLayer(TILE_L,{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',maxZoom:19,className:dark?'tiles-dark':''}).addTo(map);
     tileDark=dark;
   }
   function onTheme(){ if(map) setTiles(); }
