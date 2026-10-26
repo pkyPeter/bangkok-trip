@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>曼谷六日</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: sticky date tabs over a single column of day cards; each card is a time-left / content-right timeline. */
+:root{
+  --bg:#F3EBDD; --surface:#FFFAF0; --fg:#2A2822; --muted:#655D4E; --line:#E0D3BC;
+  --accent:#2E5E4E; --accent-fg:#FFFFFF; --accent-soft:#DCE9E1;
+  --alt-bg:#FBE6D3; --alt-fg:#8A3E0C; --alt-line:#E9B48A;
+  --swap-bg:#EADFF2; --swap-fg:#5A2F7A; --swap-line:#C8AEDD;
+  --trans-bg:#D9E8F2; --trans-fg:#17476B; --trans-line:#A5C5DD;
+  --d0:#5B6B7A; --d1:#2E5E4E; --d2:#A4531F; --d3:#7A3F8F; --d4:#1F6F8B; --d5:#A8323E; --d6:#7A6A1E; --badge-fg:#FFFFFF;
+  --bar-h:56px;
+  --font:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1A1813; --surface:#25221B; --fg:#EFE8D8; --muted:#B5AB96; --line:#3B362B;
+  --accent:#8CC7A8; --accent-fg:#10231A; --accent-soft:#2A3A31;
+  --alt-bg:#3B2A1C; --alt-fg:#F2B98A; --alt-line:#6B4A2E;
+  --swap-bg:#33283D; --swap-fg:#D9BCEE; --swap-line:#5C4670;
+  --trans-bg:#1F3141; --trans-fg:#A9D0EC; --trans-line:#3F5E78;
+  --d0:#A9B8C6; --d1:#8CC7A8; --d2:#F0A778; --d3:#D3A6E6; --d4:#7FC6DE; --d5:#F08F9A; --d6:#D8C77A; --badge-fg:#14110C;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1A1813; --surface:#25221B; --fg:#EFE8D8; --muted:#B5AB96; --line:#3B362B;
+  --accent:#8CC7A8; --accent-fg:#10231A; --accent-soft:#2A3A31;
+  --alt-bg:#3B2A1C; --alt-fg:#F2B98A; --alt-line:#6B4A2E;
+  --swap-bg:#33283D; --swap-fg:#D9BCEE; --swap-line:#5C4670;
+  --trans-bg:#1F3141; --trans-fg:#A9D0EC; --trans-line:#3F5E78;
+  --d0:#A9B8C6; --d1:#8CC7A8; --d2:#F0A778; --d3:#D3A6E6; --d4:#7FC6DE; --d5:#F08F9A; --d6:#D8C77A; --badge-fg:#14110C;
+  color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 calc(40px + var(--bar-h) + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:720px;margin:0 auto}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+header.top{padding-block:28px 14px}
+.kicker{margin:0;font-size:15px;color:var(--muted);letter-spacing:.08em}
+h1{margin:2px 0 4px;font-size:2.4rem;line-height:1.2;font-weight:700;color:var(--accent);letter-spacing:.04em;text-wrap:balance}
+.range{margin:0;font-size:1.05rem;font-weight:500}
+.notes{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:6px;color:var(--muted);font-size:15px}
+.notes li{padding-left:1.1em;position:relative}
+.notes li::before{content:"";position:absolute;left:.1em;top:.8em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.tab{flex:0 0 auto;min-width:64px;min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 12px;
+  border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg);font:inherit;line-height:1.25;cursor:pointer}
+.tab span{font-weight:700;font-size:16px;font-variant-numeric:tabular-nums}
+.tab small{font-size:14px;color:var(--muted)}
+.tab[aria-current="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.tab[aria-current="true"] small{color:var(--accent-fg)}
+.todaybar{margin:14px 0 0}
+.today{min-height:44px;padding:8px 16px;border-radius:10px;border:1.5px solid var(--accent);background:transparent;color:var(--accent);font:inherit;font-weight:700;cursor:pointer}
+.today[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg)}
+details.box{margin-top:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+details.box>summary{min-height:48px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:8px;list-style:none}
+details.box>summary::-webkit-details-marker{display:none}
+details.box>summary::after{content:"＋";margin-left:auto;color:var(--accent);font-weight:700}
+details.box[open]>summary::after{content:"－"}
+details.box ul{margin:0;padding:0 16px 14px;list-style:none;display:grid;gap:10px}
+details.box li{padding-left:1em;position:relative}
+details.box li::before{content:"";position:absolute;left:0;top:.8em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+main{display:grid;gap:20px;margin-top:20px}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;scroll-margin-top:84px;min-width:0}
+.dayhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.dd{display:flex;flex-direction:column;align-items:center;min-width:64px;padding:6px 10px;border-radius:10px;background:var(--accent);color:var(--accent-fg);line-height:1.25}
+.dn{font-size:14px;letter-spacing:.06em}
+.dt{font-size:1.15rem;font-weight:700;font-variant-numeric:tabular-nums}
+.dt small{display:block;font-size:14px;font-weight:500;text-align:center}
+.dayhead h2{margin:0;flex:1 1 12rem;min-width:0;font-size:1.25rem;line-height:1.4;text-wrap:balance}
+.daynote{margin:12px 0 0;color:var(--muted);font-size:15px}
+.tl{list-style:none;margin:8px 0 0;padding:0}
+.tl>li{display:grid;grid-template-columns:3.6rem minmax(0,1fr);gap:0 12px;padding-block:8px}
+.time{font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;padding-top:1px}
+.time.word{font-size:15px;color:var(--muted)}
+.body{border-left:2px solid var(--line);padding-left:14px;position:relative;min-width:0;overflow-wrap:anywhere}
+.body::before{content:"";position:absolute;left:-6px;top:.7em;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+.body p{margin:0}
+.subs{margin:6px 0 0;padding-left:1.2em;display:grid;gap:6px}
+.pl{white-space:normal}
+.map{display:inline-flex;align-items:center;justify-content:center;min-height:40px;min-width:44px;margin:-8px 0 -8px 4px;padding:0 10px;
+  font-size:14px;font-weight:700;line-height:1;text-decoration:none;color:var(--accent);background:var(--accent-soft);border-radius:999px;vertical-align:middle}
+.tl>li.tagrow{display:block;padding-block:6px}
+.tag{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;border:1px solid;font-size:15px;line-height:1.65}
+.tag>span:last-child{min-width:0;overflow-wrap:anywhere}
+.tl-lab{flex:0 0 auto;padding:1px 8px;border-radius:6px;font-weight:700;font-size:14px;border:1px solid currentColor}
+.t-alt{background:var(--alt-bg);color:var(--alt-fg);border-color:var(--alt-line)}
+.t-swap{background:var(--swap-bg);color:var(--swap-fg);border-color:var(--swap-line)}
+.t-trans{background:var(--trans-bg);color:var(--trans-fg);border-color:var(--trans-line)}
+.tag .map{background:transparent;border:1px solid currentColor;color:inherit}
+.bottom{margin-top:20px}
+@media (max-width:380px){.tl>li{grid-template-columns:3.2rem minmax(0,1fr);gap:0 8px}h1{font-size:2.1rem}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.note{margin-top:8px;padding:10px 12px;border-left:3px solid var(--accent,#2f6b4f);background:rgba(127,127,127,.08);border-radius:6px;font-size:14px;line-height:1.55}
+
+/* ---- Leaflet 1.9.4 (inlined; default marker images removed, markers are L.divIcon) ---- */
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+.leaflet-tile::selection {
+	background: transparent;
+}
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+.leaflet-container .leaflet-overlay-pane svg {
+	max-width: none !important;
+	max-height: none !important;
+	}
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto;
+	padding: 0;
+	}
+.leaflet-container img.leaflet-tile {
+	mix-blend-mode: plus-lighter;
+}
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+.leaflet-pane         { z-index: 400; }
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	behavior: url(#default#VML);
+	display: inline-block;
+	position: absolute;
+	}
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; 
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+svg.leaflet-zoom-animated {
+	will-change: transform;
+}
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; 
+	pointer-events: auto;
+	}
+.leaflet-container {
+	background: #ddd;
+	outline-offset: 1px;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+.leaflet-container {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	}
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	font-size: 13px;
+	font-size: 1.08333em;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	line-height: 1.4;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+	text-decoration: underline;
+	}
+.leaflet-attribution-flag {
+	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	white-space: nowrap;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px #fff;
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 24px 13px 20px;
+	line-height: 1.3;
+	font-size: 13px;
+	font-size: 1.08333em;
+	min-height: 1px;
+	}
+.leaflet-popup-content p {
+	margin: 17px 0;
+	margin: 1.3em 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+	margin: -10px auto 0;
+	pointer-events: auto;
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	text-align: center;
+	width: 24px;
+	height: 24px;
+	font: 16px/24px Tahoma, Verdana, sans-serif;
+	color: #757575;
+	text-decoration: none;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+	color: #585858;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	}
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	-ms-zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-interactive {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+@media print {
+	.leaflet-control {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+		}
+	}
+/* ---- 定位按鈕、地圖分頁、底部分頁列 ---- */
+.loc{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-height:40px;min-width:44px;margin:-8px 0 -8px 4px;padding:0 10px;border:0;
+  font:inherit;font-size:14px;font-weight:700;line-height:1;color:var(--accent);background:var(--accent-soft);border-radius:999px;vertical-align:middle;cursor:pointer}
+.tag .loc{background:transparent;border:1px solid currentColor;color:inherit}
+.tl>li{transition:box-shadow .4s,background-color .4s}
+.tl>li.hl{background:var(--accent-soft);box-shadow:0 0 0 6px var(--accent-soft);border-radius:8px}
+.bottombar{position:fixed;left:0;right:0;bottom:0;z-index:1100;display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border-top:1px solid var(--line);
+  padding:0 env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.bb{min-height:var(--bar-h);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;margin:0;padding:4px 8px;border:0;border-radius:0;background:transparent;color:var(--muted);font:inherit;font-size:14px;line-height:1.2;cursor:pointer}
+.bb[aria-current="page"]{color:var(--accent);font-weight:700;box-shadow:inset 0 3px 0 var(--accent)}
+#mapview{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);bottom:calc(var(--bar-h) + env(safe-area-inset-bottom,0px));z-index:30;display:flex;flex-direction:column;background:var(--bg)}
+#mapview[hidden]{display:none}
+.mapbar{flex:0 0 auto;background:var(--bg);border-bottom:1px solid var(--line);padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.chip{flex:0 0 auto;min-height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--fg);font:inherit;font-size:15px;font-variant-numeric:tabular-nums;cursor:pointer}
+.chip i{width:10px;height:10px;border-radius:50%;background:var(--c);border:1.5px solid var(--surface)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+#map{flex:1 1 auto;min-height:0;isolation:isolate;background:var(--bg)}
+.mapfail{margin:0;padding:24px 16px;color:var(--muted)}
+.pin-wrap{background:none;border:0}
+.pin{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:700 13px/1 var(--font);font-variant-numeric:tabular-nums;color:var(--badge-fg);background:var(--c);border:2px solid var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.45)}
+.leaflet-container{font-family:var(--font);background:var(--bg)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--surface);color:var(--fg)}
+.leaflet-popup-content{margin:12px 14px;font-size:15px;line-height:1.5}
+.leaflet-container a.leaflet-popup-close-button{width:36px;height:36px;font:22px/36px var(--font);color:var(--muted)}
+.pop-name{margin:0 22px 2px 0;font-weight:700}
+.pop-day{margin:0 0 10px;font-size:14px;color:var(--muted)}
+.pop-actions{display:grid;gap:8px}
+.leaflet-container a.pop-link,.pop-back{min-height:44px;display:flex;align-items:center;justify-content:center;padding:0 12px;border-radius:10px;font:inherit;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer}
+.leaflet-container a.pop-link{background:var(--accent);color:var(--accent-fg)}
+.pop-back{border:1.5px solid var(--accent);background:transparent;color:var(--accent)}
+.leaflet-bar a,.leaflet-bar a:hover{background-color:var(--surface);color:var(--fg);border-bottom-color:var(--line)}
+.leaflet-touch .leaflet-bar a{width:40px;height:40px;line-height:40px}
+.leaflet-touch .leaflet-bar{border:1px solid var(--line)}
+.leaflet-container .leaflet-control-attribution{background:var(--surface);color:var(--muted);opacity:.92}
+.leaflet-container .leaflet-control-attribution a{color:var(--muted)}
+
+</style>
+</head>
+<body>
+<div class="wrap" id="itinerary">
+<header class="top">
+  <p class="kicker">6 天 5 夜行程</p>
+  <h1>曼谷六日</h1>
+  <p class="range">2026/12/23（三）– 12/29（二）</p>
+  <ul class="notes">
+    <li>去程抵達廊曼 Don Mueang（DMK），回程從蘇凡納布 Suvarnabhumi（BKK）起飛，兩個機場不同邊，機場交通已分別標示。</li>
+    <li>住宿建議：BTS Sukhumvit（Asok／Phrom Phong）或 Siam／Chit Lom 一帶，去哪都方便。</li>
+    <li>行程依「同區域集中」排，每天有一個主線＋可替換的備案。</li>
+  </ul>
+  <div class="todaybar" id="todaybar" hidden>
+    <button type="button" class="today" id="todayBtn" aria-pressed="false" aria-label="只顯示今天的行程">只看今天</button>
+  </div>
+  <details class="box" id="hours">
+    <summary>核對過的營業資訊（重點）</summary>
+    <ul>
+      <li><strong>大皇宮／玉佛寺：</strong>每天 08:30–15:30（15:30 停止入場）。偶有皇室典禮臨時關閉，出發前一週再看官網公告。</li>
+      <li><strong>臥佛寺 Wat Pho：</strong>每天 08:00–18:30。鄭王廟 Wat Arun：每天 08:00–18:00（夜間打燈從河對岸看）。</li>
+      <li><strong>恰圖恰週末市集 Chatuchak：</strong>只有週六、日（約 09:00–18:00）→ 12/26、12/27 剛好週末。</li>
+      <li><strong>Jodd Fairs Ratchada 夜市：</strong>每天 17:00–01:00。</li>
+      <li><strong>Talad Rot Fai Srinakarin 火車夜市：</strong>週四–週日 17:00–01:00（週一–三休）。</li>
+      <li><strong>Talad Rot Fai Ratchada（2026/3 重開）：</strong>週四/五–週日 17:00–01:00。</li>
+      <li><strong>安帕瓦 Amphawa 水上市場：</strong>只有週五、六、日下午–晚上 → 12/25（五）可去。</li>
+      <li><strong>美功鐵道市場 Maeklong：</strong>每天；火車通過約 08:30、11:10、14:30、17:40（出發前再確認）。</li>
+      <li><strong>丹嫩莎朵 Damnoen Saduak：</strong>每天早上，07:00–09:00 最好。</li>
+      <li><strong>Jim Thompson House：</strong>每天 10:00–18:00（含週一）。</li>
+      <li><strong>BACC 曼谷藝術文化中心：</strong>週二–週日 10:00–20:00，週一休 → 12/28（一）不能去。</li>
+      <li><strong>Museum Siam：</strong>週二–週日 10:00–18:00，週一休。國家博物館：週三–週日，週一二休。</li>
+      <li><strong>聖誕燈飾：</strong>ICONSIAM 河畔、CentralWorld 大聖誕樹、EmQuartier 整個 12 月都有。</li>
+      <li>ICONSIAM「Amazing Thailand Countdown」往年 12/27–12/31 在 River Park 有連日演出；2026 年細節 12 月才公布，12/27、12/28 晚上可去碰運氣。</li>
+      <li><strong>入境：</strong>台灣護照免簽；2026 起可能需線上填 TDAC 數位入境卡（出發前 3 天內填）。</li>
+    </ul>
+  </details>
+</header>
+<nav class="tabbar" aria-label="日期">
+  <div class="tabs" id="tabs"><button type="button" class="tab" data-target="d0" aria-label="跳到 12/23 週三（Day 0）"><span>12/23</span><small>週三</small></button><button type="button" class="tab" data-target="d1" aria-label="跳到 12/24 週四（Day 1）"><span>12/24</span><small>週四</small></button><button type="button" class="tab" data-target="d2" aria-label="跳到 12/25 週五（Day 2）"><span>12/25</span><small>週五</small></button><button type="button" class="tab" data-target="d3" aria-label="跳到 12/26 週六（Day 3）"><span>12/26</span><small>週六</small></button><button type="button" class="tab" data-target="d4" aria-label="跳到 12/27 週日（Day 4）"><span>12/27</span><small>週日</small></button><button type="button" class="tab" data-target="d5" aria-label="跳到 12/28 週一（Day 5）"><span>12/28</span><small>週一</small></button><button type="button" class="tab" data-target="d6" aria-label="跳到 12/29 週二（Day 6）"><span>12/29</span><small>週二</small></button></div>
+</nav>
+<main id="days">
+<article class="day" id="d0" data-date="12/23" aria-labelledby="d0-h">
+<header class="dayhead"><div class="dd"><span class="dn">Day 0</span><span class="dt">12/23<small>週三</small></span></div><h2 id="d0-h">抵達</h2></header>
+<ol class="tl">
+<li><span class="time">21:30</span><div class="body"><p>落地 → 通關＋領行李約 1 小時。</p></div></li>
+<li><span class="time">22:30</span><div class="body"><p>前往市區：</p><ul class="subs"><li><strong>建議：Grab／機場排班計程車</strong>（1 樓 8 號門排隊、機場加收 50 THB）：到 Sukhumvit／Siam 約 45–60 分鐘、300–450 THB（含高速費），晚上不塞、帶行李最省事。</li><li><span class="pl" data-place="dmk-srt">SRT 紅線 Don Mueang 站<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Don%20Mueang%20SRT%20Red%20Line%20Station" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Don Mueang 紅線站">地圖</a><button type="button" class="loc" data-loc="dmk-srt" aria-label="在地圖分頁定位 Don Mueang 紅線站"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>：航廈 2 樓天橋走過去約 10 分鐘，到 Krung Thep Aphiwat（Bang Sue）約 20 分鐘、33 THB，末班車約 24:00；再轉 MRT 藍線（末班約 24:00）到 Sukhumvit／Silom，趕得上但要抓緊。</li><li>A1／A2 機場巴士（30 THB）：A1 到 BTS Mo Chit／MRT Chatuchak，約 23:00–24:00 收班，之後只能搭車。</li></ul></div></li>
+<li><span class="time">23:30</span><div class="body"><p>Check-in。想吃宵夜：飯店附近 7-Eleven／街邊攤，或精神好直接去 <span class="pl" data-place="jodd">Jodd Fairs Ratchada<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Jodd%20Fairs%20Ratchada%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Jodd Fairs Ratchada">地圖</a><button type="button" class="loc" data-loc="jodd" aria-label="在地圖分頁定位 Jodd Fairs Ratchada"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（到 01:00）。</p></div></li>
+<li><span class="time word">機場</span><div class="body"><p><span class="pl" data-place="dmk">廊曼機場<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Don%20Mueang%20International%20Airport%20Thailand" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 廊曼機場">地圖</a><button type="button" class="loc" data-loc="dmk" aria-label="在地圖分頁定位 廊曼機場"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>可做：買 SIM／用 eSIM、換少量現金（市區 SuperRich 匯率較好）。廊曼入境通關通常比 BKK 快。</p></div></li>
+</ol></article>
+<article class="day" id="d1" data-date="12/24" aria-labelledby="d1-h">
+<header class="dayhead"><div class="dd"><span class="dn">Day 1</span><span class="dt">12/24<small>週四</small></span></div><h2 id="d1-h">舊城區・三大寺＋唐人街</h2></header>
+<ol class="tl">
+<li><span class="time">07:30</span><div class="body"><p>出發，BTS/MRT 到 Sanam Chai（MRT 藍線）步行，或 Grab 直達。</p></div></li>
+<li><span class="time">08:30</span><div class="body"><p><span class="pl" data-place="grand-palace">大皇宮<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Grand%20Palace%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 大皇宮">地圖</a><button type="button" class="loc" data-loc="grand-palace" aria-label="在地圖分頁定位 大皇宮"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>＋玉佛寺（500 THB）開門就進，避開人潮與中午高溫。穿長褲、有袖上衣。</p></div></li>
+<li><span class="time">10:30</span><div class="body"><p>臥佛寺 <span class="pl" data-place="wat-pho">Wat Pho<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Wat%20Pho%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Wat Pho">地圖</a><button type="button" class="loc" data-loc="wat-pho" aria-label="在地圖分頁定位 Wat Pho"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（300 THB，含一瓶水），順便在寺內按摩學校做 30 分鐘足療。</p></div></li>
+<li><span class="time">12:00</span><div class="body"><p>午餐：<span class="pl" data-place="tha-tian">Tha Tian 碼頭<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Tha%20Tian%20Pier%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Tha Tian 碼頭">地圖</a><button type="button" class="loc" data-loc="tha-tian" aria-label="在地圖分頁定位 Tha Tian 碼頭"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>附近，或 <span class="pl" data-place="thipsamai">Thip Samai<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Thip%20Samai%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Thip Samai">地圖</a><button type="button" class="loc" data-loc="thipsamai" aria-label="在地圖分頁定位 Thip Samai"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 炒粿條（Pad Thai 名店，11:00 開）。</p></div></li>
+<li><span class="time">13:30</span><div class="body"><p><span class="pl" data-place="tha-tian">Tha Tian 碼頭<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Tha%20Tian%20Pier%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Tha Tian 碼頭">地圖</a><button type="button" class="loc" data-loc="tha-tian" aria-label="在地圖分頁定位 Tha Tian 碼頭"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>搭渡船（5 THB）過河 → 鄭王廟 <span class="pl" data-place="wat-arun">Wat Arun<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Wat%20Arun%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Wat Arun">地圖</a><button type="button" class="loc" data-loc="wat-arun" aria-label="在地圖分頁定位 Wat Arun"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（200 THB），可租泰服拍照。</p></div></li>
+<li><span class="time">15:30</span><div class="body"><p>回程坐 Chao Phraya Express 橘旗船往南，在 Ratchawong 下船 → 唐人街 <span class="pl" data-place="yaowarat">Yaowarat<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Yaowarat%20Road%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Yaowarat">地圖</a><button type="button" class="loc" data-loc="yaowarat" aria-label="在地圖分頁定位 Yaowarat"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>。</p></div></li>
+<li><span class="time">16:30</span><div class="body"><p><span class="pl" data-place="wat-traimit">Wat Traimit<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Wat%20Traimit%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Wat Traimit">地圖</a><button type="button" class="loc" data-loc="wat-traimit" aria-label="在地圖分頁定位 Wat Traimit"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 金佛寺（金佛 5.5 噸）或 <span class="pl" data-place="talat-noi">Talat Noi<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Talat%20Noi%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Talat Noi">地圖</a><button type="button" class="loc" data-loc="talat-noi" aria-label="在地圖分頁定位 Talat Noi"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 老街散步拍照。</p></div></li>
+<li><span class="time">18:00</span><div class="body"><p><span class="pl" data-place="yaowarat">耀華力路<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Yaowarat%20Road%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 耀華力路">地圖</a><button type="button" class="loc" data-loc="yaowarat" aria-label="在地圖分頁定位 耀華力路"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>街頭小吃：T&amp;K 海鮮、Nai Ek Roll Noodle、芒果糯米、烤土司；聖誕夜人多，早一點來。</p></div></li>
+<li><span class="time">21:00</span><div class="body"><p>可選：Grab 到 <span class="pl" data-place="rotfai-ratchada">Talad Rot Fai Ratchada<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Talad%20Rot%20Fai%20Ratchada%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Talad Rot Fai Ratchada">地圖</a><button type="button" class="loc" data-loc="rotfai-ratchada" aria-label="在地圖分頁定位 Talad Rot Fai Ratchada"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（週四有開）喝一杯，或回飯店早睡。</p></div></li>
+<li class="tagrow"><div class="tag t-alt"><span class="tl-lab">備案</span><span>若大皇宮臨時關閉，改去國家博物館（週四有開）或 Museum Siam。</span></div></li>
+</ol></article>
+<article class="day" id="d2" data-date="12/25" aria-labelledby="d2-h">
+<header class="dayhead"><div class="dd"><span class="dn">Day 2</span><span class="dt">12/25<small>週五</small></span></div><h2 id="d2-h">近郊一日・美功鐵道市場＋水上市場</h2></header>
+<ol class="tl">
+<li><span class="time">06:30</span><div class="body"><p>出發（包車或一日團 7:00 集合；Klook/KKday「美功＋丹嫩莎朵」團約 900–1,500 THB）。</p></div></li>
+<li><span class="time">08:30</span><div class="body"><p>美功鐵道市場 <span class="pl" data-place="maeklong">Maeklong<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Maeklong%20Railway%20Market%20Thailand" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Maeklong">地圖</a><button type="button" class="loc" data-loc="maeklong" aria-label="在地圖分頁定位 Maeklong"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>：看火車穿越市場收傘名場面（抓 08:30 那班，提早 20 分鐘卡位）。</p></div></li>
+<li><span class="time">10:00</span><div class="body"><p>丹嫩莎朵水上市場 <span class="pl" data-place="damnoen">Damnoen Saduak<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Damnoen%20Saduak%20Floating%20Market%20Thailand" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Damnoen Saduak">地圖</a><button type="button" class="loc" data-loc="damnoen" aria-label="在地圖分頁定位 Damnoen Saduak"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>：長尾船遊河（議價約 150–300 THB/人），買椰子冰、船麵。</p></div></li>
+<li><span class="time">12:30</span><div class="body"><p>午餐在市場或 Amphawa 河邊海鮮。</p></div></li>
+<li><span class="time">14:00</span><div class="body"><p>自由行可選：<span class="pl" data-place="wat-bang-kung">Wat Bang Kung<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Wat%20Bang%20Kung%20Thailand" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Wat Bang Kung">地圖</a><button type="button" class="loc" data-loc="wat-bang-kung" aria-label="在地圖分頁定位 Wat Bang Kung"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（樹包廟）或在 Amphawa 咖啡廳休息。</p></div></li>
+<li><span class="time">15:00</span><div class="body"><p>安帕瓦水上市場 <span class="pl" data-place="amphawa">Amphawa<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Amphawa%20Floating%20Market%20Thailand" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Amphawa">地圖</a><button type="button" class="loc" data-loc="amphawa" aria-label="在地圖分頁定位 Amphawa"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（週五才開！）：河邊烤蝦、泰式甜點，18:00 後搭船看螢火蟲（約 60–80 THB/人）。</p></div></li>
+<li><span class="time">20:00</span><div class="body"><p>包車回曼谷（約 1.5 小時），21:30 抵達。</p></div></li>
+<li class="tagrow"><div class="tag t-trans"><span class="tl-lab">交通建議</span><span>3–4 人以上包車整天約 2,500–3,500 THB 最划算；跟團通常不含 Amphawa 傍晚，想看螢火蟲要包車。</span></div></li>
+<li class="tagrow"><div class="tag t-alt"><span class="tl-lab">備案</span><span>不想跑遠 → 改大城 <span class="pl" data-place="ayutthaya">Ayutthaya<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Ayutthaya%20Historical%20Park%20Thailand" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Ayutthaya">地圖</a><button type="button" class="loc" data-loc="ayutthaya" aria-label="在地圖分頁定位 Ayutthaya"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（火車 Hua Lamphong/Krung Thep Aphiwat 出發 1.5 小時，租腳踏車逛 Wat Mahathat 樹中佛頭、Wat Chaiwatthanaram 日落）。</span></div></li>
+</ol></article>
+<article class="day" id="d3" data-date="12/26" aria-labelledby="d3-h">
+<header class="dayhead"><div class="dd"><span class="dn">Day 3</span><span class="dt">12/26<small>週六</small></span></div><h2 id="d3-h">恰圖恰週末市集＋火車夜市</h2></header>
+<ol class="tl">
+<li><span class="time">09:00</span><div class="body"><p>恰圖恰 <span class="pl" data-place="chatuchak">Chatuchak<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Chatuchak%20Weekend%20Market%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Chatuchak">地圖</a><button type="button" class="loc" data-loc="chatuchak" aria-label="在地圖分頁定位 Chatuchak"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（MRT Chatuchak Park / BTS Mo Chit）：先逛 Section 2–4 設計小物、服飾，熱了就去 JJ Mall 吹冷氣。椰子冰（Coco JJ）、Section 26 附近的 Viva 8 炒飯。</p></div></li>
+<li><span class="time">12:30</span><div class="body"><p>午餐：隔壁 <span class="pl" data-place="ortorkor">Or Tor Kor<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Or%20Tor%20Kor%20Market%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Or Tor Kor">地圖</a><button type="button" class="loc" data-loc="ortorkor" aria-label="在地圖分頁定位 Or Tor Kor"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 市場（高級傳統市場，芒果、烤鴨、泰北菜）。</p></div></li>
+<li><span class="time">14:30</span><div class="body"><p>回飯店休息，或 2 小時泰式按摩（<span class="pl" data-place="healthland">Health Land Asok<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Health%20Land%20Asok%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Health Land Asok">地圖</a><button type="button" class="loc" data-loc="healthland" aria-label="在地圖分頁定位 Health Land Asok"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>／Let&#x27;s Relax，建議前一天預約）。</p><p class="note"><strong>安全查核（2026/10）：</strong>Health Land Asok、Let&#x27;s Relax、臥佛寺按摩學校都沒有查到竊盜或盜刷案例，負評多是等候久、加價推銷、服務品質。但 2025/1 曼谷通羅區一間日式溫泉（新聞未指名）發生置物櫃信用卡被盜刷約 34 萬泰銖的案件，手法是用電子卡破解手環鎖。建議：卡片、護照放隨身小包帶進房間，不要留在置物櫃；付款用現金或手機感應，不要交出實體卡；離開前核對收據金額。</p></div></li>
+<li><span class="time">17:00</span><div class="body"><p><span class="pl" data-place="jim-thompson">Jim Thompson House<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Jim%20Thompson%20House%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Jim Thompson House">地圖</a><button type="button" class="loc" data-loc="jim-thompson" aria-label="在地圖分頁定位 Jim Thompson House"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（10:00–18:00，最後導覽 17:00）— 若早上逛累可略過。</p></div></li>
+<li><span class="time">18:30</span><div class="body"><p>二選一：</p><ul class="subs"><li>A. <span class="pl" data-place="rotfai-srinakarin">Talad Rot Fai Srinakarin<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Talad%20Rot%20Fai%20Srinakarin%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Talad Rot Fai Srinakarin">地圖</a><button type="button" class="loc" data-loc="rotfai-srinakarin" aria-label="在地圖分頁定位 Talad Rot Fai Srinakarin"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 火車夜市（週六有開，MRT 黃線 Suan Luang Rama 9 步行 10 分；復古老車、骨董、超多小吃，19:00 後最熱鬧）。</li><li>B. <span class="pl" data-place="jodd">Jodd Fairs Ratchada<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Jodd%20Fairs%20Ratchada%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Jodd Fairs Ratchada">地圖</a><button type="button" class="loc" data-loc="jodd" aria-label="在地圖分頁定位 Jodd Fairs Ratchada"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（MRT Thailand Cultural Centre；交通方便、火山排骨、流水蝦）。</li></ul></div></li>
+<li class="tagrow"><div class="tag t-alt"><span class="tl-lab">備案</span><span>下雨 → 改 <span class="pl" data-place="iconsiam">ICONSIAM<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=ICONSIAM%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 ICONSIAM">地圖</a><button type="button" class="loc" data-loc="iconsiam" aria-label="在地圖分頁定位 ICONSIAM"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 室內 Sook Siam 水上市場＋河畔聖誕燈。</span></div></li>
+</ol></article>
+<article class="day" id="d4" data-date="12/27" aria-labelledby="d4-h">
+<header class="dayhead"><div class="dd"><span class="dn">Day 4</span><span class="dt">12/27<small>週日</small></span></div><h2 id="d4-h">Siam 商圈聖誕燈＋河畔 ICONSIAM</h2></header>
+<ol class="tl">
+<li><span class="time">10:00</span><div class="body"><p><span class="pl" data-place="bacc">BACC<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Bangkok%20Art%20and%20Culture%20Centre%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 BACC">地圖</a><button type="button" class="loc" data-loc="bacc" aria-label="在地圖分頁定位 BACC"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 曼谷藝術文化中心（免費，週日有開）看展，樓下有獨立咖啡店。</p></div></li>
+<li><span class="time">11:30</span><div class="body"><p>Siam Square 逛街：Siam Center／<span class="pl" data-place="siam-paragon">Siam Paragon<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Siam%20Paragon%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Siam Paragon">地圖</a><button type="button" class="loc" data-loc="siam-paragon" aria-label="在地圖分頁定位 Siam Paragon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（B1 美食街 Gourmet Market）午餐。</p></div></li>
+<li><span class="time">14:00</span><div class="body"><p>四面佛 <span class="pl" data-place="erawan">Erawan Shrine<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Erawan%20Shrine%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Erawan Shrine">地圖</a><button type="button" class="loc" data-loc="erawan" aria-label="在地圖分頁定位 Erawan Shrine"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（Chit Lom）→ <span class="pl" data-place="centralworld">CentralWorld<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=CentralWorld%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 CentralWorld">地圖</a><button type="button" class="loc" data-loc="centralworld" aria-label="在地圖分頁定位 CentralWorld"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 看大聖誕樹、<span class="pl" data-place="central-embassy">Central Embassy<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Central%20Embassy%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Central Embassy">地圖</a><button type="button" class="loc" data-loc="central-embassy" aria-label="在地圖分頁定位 Central Embassy"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 頂樓 Open House 休息。</p></div></li>
+<li><span class="time">16:00</span><div class="body"><p>BTS 到 Saphan Taksin → <span class="pl" data-place="iconsiam">ICONSIAM<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=ICONSIAM%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 ICONSIAM">地圖</a><button type="button" class="loc" data-loc="iconsiam" aria-label="在地圖分頁定位 ICONSIAM"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 免費接駁船（<span class="pl" data-place="sathorn-pier">Sathorn Pier<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Sathorn%20Pier%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Sathorn Pier">地圖</a><button type="button" class="loc" data-loc="sathorn-pier" aria-label="在地圖分頁定位 Sathorn Pier"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>，5–10 分鐘）。</p></div></li>
+<li><span class="time">17:00</span><div class="body"><p>ICONSIAM：Sook Siam 室內水上市場吃小吃、河畔聖誕燈飾；18:30 前上到 River Park 看日落＋對岸天際線。</p></div></li>
+<li><span class="time">19:00</span><div class="body"><p>往年 12/27 起 River Park 有 Amazing Thailand Countdown 前導演出與噴泉燈光秀（19:00/20:30/21:30 場次），當天看現場公告。</p></div></li>
+<li><span class="time">21:00</span><div class="body"><p>晚餐：ICONSIAM 6 樓或搭船回 Sathorn，到 Silom 吃宵夜。</p></div></li>
+<li class="tagrow"><div class="tag t-swap"><span class="tl-lab">替換方案</span><span>想登高 → <span class="pl" data-place="mahanakhon">King Power Mahanakhon<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=King%20Power%20Mahanakhon%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 King Power Mahanakhon">地圖</a><button type="button" class="loc" data-loc="mahanakhon" aria-label="在地圖分頁定位 King Power Mahanakhon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> SkyWalk 日落場（約 880 THB，提前線上買）；或 Sky Bar at Lebua（smart casual）。</span></div></li>
+</ol></article>
+<article class="day" id="d5" data-date="12/28" aria-labelledby="d5-h">
+<header class="dayhead"><div class="dd"><span class="dn">Day 5</span><span class="dt">12/28<small>週一</small></span></div><h2 id="d5-h">輕鬆市區日・公園／按摩／最後採買</h2></header>
+<p class="daynote">（週一 BACC、Museum Siam、國家博物館休館，所以排戶外與購物）</p>
+<ol class="tl">
+<li><span class="time">07:00</span><div class="body"><p><span class="pl" data-place="lumpini">Lumpini 公園<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Lumpini%20Park%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Lumpini 公園">地圖</a><button type="button" class="loc" data-loc="lumpini" aria-label="在地圖分頁定位 Lumpini 公園"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>晨跑或散步，看水巨蜥；或 <span class="pl" data-place="benjakitti">Benjakitti 森林公園<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Benjakitti%20Park%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Benjakitti 森林公園">地圖</a><button type="button" class="loc" data-loc="benjakitti" aria-label="在地圖分頁定位 Benjakitti 森林公園"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>高架步道。</p></div></li>
+<li><span class="time">09:30</span><div class="body"><p>早午餐：Sukhumvit 咖啡店（例如 Roots、Hands and Heart）。</p></div></li>
+<li><span class="time">11:00</span><div class="body"><p><span class="pl" data-place="terminal21">Terminal 21<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Terminal%2021%20Asok%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Terminal 21">地圖</a><button type="button" class="loc" data-loc="terminal21" aria-label="在地圖分頁定位 Terminal 21"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（Asok）各樓層國家主題、Pier 21 美食街超便宜午餐。</p></div></li>
+<li><span class="time">13:00</span><div class="body"><p>伴手禮採買：<span class="pl" data-place="bigc">Big C Ratchadamri<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Big%20C%20Ratchadamri%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Big C Ratchadamri">地圖</a><button type="button" class="loc" data-loc="bigc" aria-label="在地圖分頁定位 Big C Ratchadamri"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（零食、小老闆海苔、手標奶茶）、Boots／Watsons 藥妝、Gourmet Market。</p></div></li>
+<li><span class="time">15:00</span><div class="body"><p>2 小時泰式按摩或 SPA 放鬆。</p></div></li>
+<li><span class="time">17:30</span><div class="body"><p><span class="pl" data-place="one-bangkok">One Bangkok<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=One%20Bangkok%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 One Bangkok">地圖</a><button type="button" class="loc" data-loc="one-bangkok" aria-label="在地圖分頁定位 One Bangkok"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>（2024 新開，Wireless Rd）逛逛，或 <span class="pl" data-place="emquartier">EmQuartier<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=EmQuartier%20Bangkok" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 EmQuartier">地圖</a><button type="button" class="loc" data-loc="emquartier" aria-label="在地圖分頁定位 EmQuartier"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 聖誕森林燈飾。</p></div></li>
+<li><span class="time">19:00</span><div class="body"><p>告別晚餐：Jim Thompson Restaurant、Supanniga Eating Room（河景店 Tha Tien）或 Baan Ice 泰南菜；有預算可訂 Sühring／Sorn。</p></div></li>
+<li><span class="time">21:00</span><div class="body"><p>回飯店打包，確認護照、TDAC、退稅單（VAT Refund 要在店家開 P.P.10 表）。</p></div></li>
+<li class="tagrow"><div class="tag t-alt"><span class="tl-lab">備案</span><span>體力好 → 改大城 <span class="pl" data-place="ayutthaya">Ayutthaya<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Ayutthaya%20Historical%20Park%20Thailand" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Ayutthaya">地圖</a><button type="button" class="loc" data-loc="ayutthaya" aria-label="在地圖分頁定位 Ayutthaya"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 一日（早班火車去、17:00 前回）。</span></div></li>
+</ol></article>
+<article class="day" id="d6" data-date="12/29" aria-labelledby="d6-h">
+<header class="dayhead"><div class="dd"><span class="dn">Day 6</span><span class="dt">12/29<small>週二</small></span></div><h2 id="d6-h">10:00 起飛</h2></header>
+<ol class="tl">
+<li><span class="time">06:15</span><div class="body"><p>退房出發（國際線建議提前 3 小時到）。</p></div></li>
+<li class="tagrow"><div class="tag t-trans"><span class="tl-lab">交通</span><span>Grab/計程車清晨不塞車約 35–45 分鐘；<span class="pl" data-place="phaya-thai">Airport Rail Link<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Phaya%20Thai%20Airport%20Rail%20Link" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 Airport Rail Link">地圖</a><button type="button" class="loc" data-loc="phaya-thai" aria-label="在地圖分頁定位 Airport Rail Link"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span> 首班 05:30，Phaya Thai → Suvarnabhumi 約 26 分鐘。</span></div></li>
+<li><span class="time">07:00</span><div class="body"><p>抵達<span class="pl" data-place="bkk">蘇凡納布機場 BKK<a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Suvarnabhumi%20Airport%20Thailand" target="_blank" rel="noopener" aria-label="在 Google Maps 搜尋 機場">地圖</a><button type="button" class="loc" data-loc="bkk" aria-label="在地圖分頁定位 機場"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>定位</button></span>：先到 VAT Refund 海關櫃檯（Check-in 前，行李要給看）→ Check-in → 安檢 → 出境後領退稅現金。</p></div></li>
+<li><span class="time">08:30</span><div class="body"><p>候機，免稅店 King Power。</p></div></li>
+</ol></article>
+</main>
+<details class="box bottom" id="info">
+  <summary>實用資訊</summary>
+  <ul>
+    <li><strong>交通：</strong>BTS/MRT 用 Rabbit 卡或信用卡感應；Grab 比路邊計程車省事；Chao Phraya Express 橘旗 16 THB 全線。</li>
+    <li><strong>天氣：</strong>12 月是乾季，白天 30–32°C、早晚 22–24°C，最舒服的月份；空氣品質偶爾 PM2.5 偏高。</li>
+    <li><strong>寺廟服裝：</strong>長褲／長裙過膝、有袖上衣，大皇宮最嚴格。</li>
+    <li><strong>付款：</strong>7-Eleven 可刷卡；夜市、市場帶現金（小額鈔）。</li>
+    <li><strong>按摩店安全：</strong>卡片與護照隨身帶進按摩房、別放置物櫃；付款用現金或手機感應。</li><li><strong>小費：</strong>按摩 50–100 THB，司機不強制。</li>
+    <li><strong>緊急：</strong>旅遊警察 1155；台北駐泰國代表處 +66-2-119-3555。</li>
+  </ul>
+</details>
+</div>
+<section id="mapview" hidden aria-label="行程地圖">
+  <div class="mapbar">
+    <div class="chips" id="chips" role="group" aria-label="依日期篩選地點">
+      <button type="button" class="chip" data-day="all" aria-pressed="true">全部</button><button type="button" class="chip" data-day="0" aria-pressed="false" style="--c:var(--d0)"><i></i>12/23</button><button type="button" class="chip" data-day="1" aria-pressed="false" style="--c:var(--d1)"><i></i>12/24</button><button type="button" class="chip" data-day="2" aria-pressed="false" style="--c:var(--d2)"><i></i>12/25</button><button type="button" class="chip" data-day="3" aria-pressed="false" style="--c:var(--d3)"><i></i>12/26</button><button type="button" class="chip" data-day="4" aria-pressed="false" style="--c:var(--d4)"><i></i>12/27</button><button type="button" class="chip" data-day="5" aria-pressed="false" style="--c:var(--d5)"><i></i>12/28</button><button type="button" class="chip" data-day="6" aria-pressed="false" style="--c:var(--d6)"><i></i>12/29</button>
+    </div>
+  </div>
+  <div id="map" role="application" aria-label="曼谷行程地圖"></div>
+</section>
+<nav class="bottombar" aria-label="主要分頁">
+  <button type="button" class="bb" id="bbItin" data-view="itin" aria-current="page"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg><span>行程</span></button>
+  <button type="button" class="bb" id="bbMap" data-view="map"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span>地圖</span></button>
+</nav>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var cards=[].slice.call(document.querySelectorAll('.day'));
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function setActive(id){
+    tabs.forEach(function(t){
+      var on=t.getAttribute('data-target')===id;
+      if(on){t.setAttribute('aria-current','true');
+        var box=t.parentNode; var l=t.offsetLeft-(box.clientWidth-t.offsetWidth)/2;
+        box.scrollTo({left:l,behavior:reduce?'auto':'smooth'});}
+      else t.removeAttribute('aria-current');
+    });
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      var id=t.getAttribute('data-target'), el=document.getElementById(id);
+      if(el.hidden){showAll();}
+      el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+      setActive(id);
+    });
+  });
+  function onScroll(){
+    if(document.getElementById('itinerary').hidden) return;
+    var cur=cards[0].id, line=window.innerHeight*0.3;
+    cards.forEach(function(c){ if(!c.hidden && c.getBoundingClientRect().top<=line) cur=c.id; });
+    setActive(cur);
+  }
+  var ticking=false;
+  window.addEventListener('scroll',function(){ if(!ticking){ticking=true;requestAnimationFrame(function(){ticking=false;onScroll();});}},{passive:true});
+  onScroll();
+
+  var bar=document.getElementById('todaybar'), btn=document.getElementById('todayBtn'), todayId=null;
+  var now=new Date(), y=now.getFullYear(), m=now.getMonth()+1, d=now.getDate();
+  if(y===2026 && m===12 && d>=23 && d<=29){ todayId='d'+(d-23); bar.hidden=false; }
+  function showAll(){
+    cards.forEach(function(c){c.hidden=false;});
+    btn.setAttribute('aria-pressed','false'); btn.textContent='只看今天';
+    btn.setAttribute('aria-label','只顯示今天的行程');
+  }
+  btn.addEventListener('click',function(){
+    if(btn.getAttribute('aria-pressed')==='true'){ showAll(); return; }
+    cards.forEach(function(c){c.hidden=(c.id!==todayId);});
+    btn.setAttribute('aria-pressed','true'); btn.textContent='顯示全部';
+    btn.setAttribute('aria-label','顯示全部日期的行程');
+    window.scrollTo(0,0); setActive(todayId);
+  });
+
+
+  /* ---- 互動地圖（Leaflet 於第一次切到地圖分頁才初始化） ---- */
+  var PLACES=[{"id":"dmk","name":"廊曼機場 Don Mueang (DMK)","lat":13.915,"lng":100.6055,"day":0},{"id":"dmk-srt","name":"SRT 紅線 Don Mueang 站","lat":13.915,"lng":100.598,"day":0},{"id":"jodd","name":"Jodd Fairs Ratchada 夜市","lat":13.7679,"lng":100.5712,"day":[0,3]},{"id":"grand-palace","name":"大皇宮 Grand Palace","lat":13.7499,"lng":100.4916,"day":1},{"id":"wat-pho","name":"臥佛寺 Wat Pho","lat":13.7464,"lng":100.4928,"day":1},{"id":"thipsamai","name":"Thip Samai 炒粿條","lat":13.7528,"lng":100.5048,"day":1},{"id":"tha-tian","name":"Tha Tian 碼頭","lat":13.746,"lng":100.4902,"day":1},{"id":"wat-arun","name":"鄭王廟 Wat Arun","lat":13.7439,"lng":100.4884,"day":1},{"id":"wat-traimit","name":"金佛寺 Wat Traimit","lat":13.7377,"lng":100.5135,"day":1},{"id":"talat-noi","name":"Talat Noi 老街","lat":13.7347,"lng":100.5134,"day":1},{"id":"yaowarat","name":"唐人街 Yaowarat","lat":13.7409,"lng":100.5087,"day":1},{"id":"rotfai-ratchada","name":"Talad Rot Fai Ratchada（Esplanade 後方）","lat":13.7658,"lng":100.5712,"day":1},{"id":"maeklong","name":"美功鐵道市場 Maeklong","lat":13.4074,"lng":99.9985,"day":2},{"id":"damnoen","name":"丹嫩莎朵水上市場 Damnoen Saduak","lat":13.5202,"lng":99.9586,"day":2},{"id":"amphawa","name":"安帕瓦水上市場 Amphawa","lat":13.4251,"lng":99.9549,"day":2},{"id":"wat-bang-kung","name":"Wat Bang Kung 樹包廟","lat":13.4456,"lng":99.9409,"day":2},{"id":"chatuchak","name":"恰圖恰週末市集 Chatuchak","lat":13.7998,"lng":100.5504,"day":3},{"id":"ortorkor","name":"Or Tor Kor 市場","lat":13.7971,"lng":100.5475,"day":3},{"id":"healthland","name":"Health Land Asoke 按摩","lat":13.7409,"lng":100.5609,"day":[3,5]},{"id":"jim-thompson","name":"Jim Thompson House","lat":13.7494,"lng":100.5282,"day":3},{"id":"rotfai-srinakarin","name":"Srinakarin 火車夜市","lat":13.6939,"lng":100.6512,"day":3},{"id":"bacc","name":"BACC 曼谷藝術文化中心","lat":13.7467,"lng":100.5302,"day":4},{"id":"siam-paragon","name":"Siam Paragon","lat":13.7461,"lng":100.5348,"day":4},{"id":"erawan","name":"四面佛 Erawan Shrine","lat":13.7443,"lng":100.5405,"day":4},{"id":"centralworld","name":"CentralWorld","lat":13.7465,"lng":100.5391,"day":4},{"id":"central-embassy","name":"Central Embassy","lat":13.744,"lng":100.5466,"day":4},{"id":"sathorn-pier","name":"Sathorn 碼頭","lat":13.7186,"lng":100.5128,"day":4},{"id":"iconsiam","name":"ICONSIAM","lat":13.7268,"lng":100.5104,"day":[3,4]},{"id":"sooksiam","name":"Sook Siam 室內水上市場","lat":13.7264,"lng":100.5096,"day":[3,4]},{"id":"mahanakhon","name":"King Power Mahanakhon SkyWalk","lat":13.724,"lng":100.5285,"day":4},{"id":"lumpini","name":"Lumpini 公園","lat":13.7314,"lng":100.5417,"day":5},{"id":"benjakitti","name":"Benjakitti 森林公園","lat":13.7292,"lng":100.5587,"day":5},{"id":"terminal21","name":"Terminal 21 Asok","lat":13.738,"lng":100.5604,"day":5},{"id":"bigc","name":"Big C Ratchadamri","lat":13.7471,"lng":100.5412,"day":5},{"id":"one-bangkok","name":"One Bangkok","lat":13.7259,"lng":100.5462,"day":5},{"id":"emquartier","name":"EmQuartier","lat":13.7312,"lng":100.5695,"day":5},{"id":"ayutthaya","name":"大城 Ayutthaya 歷史公園","lat":14.3506,"lng":100.557,"day":[2,5]},{"id":"bkk","name":"蘇凡納布機場 Suvarnabhumi (BKK)","lat":13.6819,"lng":100.7469,"day":6},{"id":"phaya-thai","name":"Phaya Thai Airport Rail Link 站","lat":13.7567,"lng":100.5348,"day":6}];
+  var byId={}; PLACES.forEach(function(p){byId[p.id]=p;});
+  var itin=document.getElementById('itinerary'), mapview=document.getElementById('mapview');
+  var bbItin=document.getElementById('bbItin'), bbMap=document.getElementById('bbMap');
+  var chips=[].slice.call(document.querySelectorAll('.chip'));
+  var map=null, tile=null, tileDark=null, group=null, markers={}, curDay='all', view='itin', savedY=0, hlTimer=null, lastRow={}, gmaps={};
+  var TILE_L='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+  var TILE_D='https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}{r}.png';
+  var mq=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+
+  [].forEach.call(document.querySelectorAll('.pl[data-place]'),function(s){
+    var id=s.getAttribute('data-place'), a=s.querySelector('a.map');
+    if(a&&!gmaps[id]) gmaps[id]=a.href;
+  });
+  function days(p){return [].concat(p.day);}
+  function dayLabel(d){return 'Day '+d+'・12/'+(23+d);}
+  function isDark(){
+    var t=document.documentElement.getAttribute('data-theme');
+    if(t==='dark') return true; if(t==='light') return false;
+    return !!(mq&&mq.matches);
+  }
+  function setTiles(){
+    var dark=isDark();
+    if(tile&&tileDark===dark) return;
+    if(tile) map.removeLayer(tile);
+    tile=L.tileLayer(dark?TILE_D:TILE_L,{attribution:'&copy; OpenStreetMap &copy; CARTO',subdomains:'abcd',maxZoom:20}).addTo(map);
+    tileDark=dark;
+  }
+  function onTheme(){ if(map) setTiles(); }
+  if(mq){ if(mq.addEventListener) mq.addEventListener('change',onTheme); else if(mq.addListener) mq.addListener(onTheme); }
+  if(window.MutationObserver) new MutationObserver(onTheme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+  function iconFor(p,d){
+    var n=(d!=='all'&&days(p).indexOf(d)>-1)?d:days(p)[0];
+    return L.divIcon({className:'pin-wrap',html:'<div class="pin" style="--c:var(--d'+n+')">'+n+'</div>',iconSize:[28,28],iconAnchor:[14,14],popupAnchor:[0,-16]});
+  }
+  function hasRow(id){return !!document.querySelector('[data-place="'+id+'"]');}
+  function buildPopup(p){
+    var box=document.createElement('div'), el;
+    el=document.createElement('p'); el.className='pop-name'; el.textContent=p.name; box.appendChild(el);
+    el=document.createElement('p'); el.className='pop-day'; el.textContent=days(p).map(dayLabel).join('、'); box.appendChild(el);
+    var act=document.createElement('div'); act.className='pop-actions';
+    var a=document.createElement('a'); a.className='pop-link'; a.target='_blank'; a.rel='noopener';
+    a.href=gmaps[p.id]||('https://www.google.com/maps/search/?api=1&query='+p.lat+','+p.lng);
+    a.textContent='用 Google Maps 開啟'; act.appendChild(a);
+    if(hasRow(p.id)){
+      var b=document.createElement('button'); b.type='button'; b.className='pop-back'; b.textContent='回到行程';
+      b.addEventListener('click',function(){goRow(p.id);}); act.appendChild(b);
+    }
+    box.appendChild(act);
+    return box;
+  }
+  function applyFilter(d,animate){
+    curDay=d;
+    chips.forEach(function(c){c.setAttribute('aria-pressed',String(c.getAttribute('data-day')===String(d)));});
+    if(!map) return;
+    map.closePopup(); group.clearLayers();
+    var pts=[];
+    PLACES.forEach(function(p){
+      if(d==='all'||days(p).indexOf(d)>-1){
+        markers[p.id].setIcon(iconFor(p,d)); group.addLayer(markers[p.id]); pts.push([p.lat,p.lng]);
+      }
+    });
+    if(pts.length) map.fitBounds(pts,{padding:[40,40],maxZoom:15,animate:!!animate&&!reduce});
+  }
+  function ensureMap(){
+    if(map) return true;
+    var box=document.getElementById('map');
+    if(!window.L){ box.innerHTML='<p class="mapfail">地圖元件載入失敗，請確認網路後重新整理頁面。</p>'; return false; }
+    map=L.map(box).setView([13.75,100.52],11);
+    setTiles();
+    group=L.layerGroup().addTo(map);
+    PLACES.forEach(function(p){
+      var m=L.marker([p.lat,p.lng],{icon:iconFor(p,'all'),title:p.name,alt:p.name,riseOnHover:true});
+      m.bindPopup(function(){return buildPopup(p);},{maxWidth:260,minWidth:200});
+      markers[p.id]=m;
+    });
+    applyFilter(curDay,false);
+    return true;
+  }
+  function switchView(v){
+    if(v===view){ if(v==='map'&&map) map.invalidateSize(); return; }
+    view=v;
+    var isMap=(v==='map');
+    if(isMap){ savedY=window.scrollY; itin.hidden=true; mapview.hidden=false; }
+    else{
+      mapview.hidden=true; itin.hidden=false;
+      var de=document.documentElement; de.style.scrollBehavior='auto'; window.scrollTo(0,savedY); de.style.scrollBehavior='';
+    }
+    if(isMap){ bbMap.setAttribute('aria-current','page'); bbItin.removeAttribute('aria-current'); }
+    else{ bbItin.setAttribute('aria-current','page'); bbMap.removeAttribute('aria-current'); }
+    if(isMap&&ensureMap()) map.invalidateSize();
+  }
+  function locate(id){
+    var p=byId[id]; if(!p) return;
+    switchView('map');
+    if(!map) return;
+    if(curDay!=='all'&&days(p).indexOf(curDay)<0) applyFilter('all',false);
+    map.invalidateSize();
+    var m=markers[id], ll=m.getLatLng(), opened=false;
+    function open(){ if(opened) return; opened=true; m.openPopup(); }
+    if(map.getZoom()===16&&map.getCenter().distanceTo(ll)<5){ open(); return; }
+    map.once('moveend',open); setTimeout(open,2500);
+    if(reduce) map.setView(ll,16,{animate:false}); else map.flyTo(ll,16,{duration:1.2});
+  }
+  function goRow(id){
+    var els=[].slice.call(document.querySelectorAll('[data-place="'+id+'"]'));
+    function vis(e){var c=e.closest('.day'); return !!c&&!c.hidden;}
+    var el=lastRow[id];
+    if(!el||els.indexOf(el)<0||!vis(el)) el=els.filter(vis)[0];
+    if(!el){ showAll(); el=els[0]; }
+    if(!el) return;
+    if(map) map.closePopup();
+    switchView('itin');
+    var li=el.closest('li')||el;
+    li.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+    [].forEach.call(document.querySelectorAll('.tl>li.hl'),function(x){x.classList.remove('hl');});
+    li.classList.add('hl');
+    clearTimeout(hlTimer); hlTimer=setTimeout(function(){li.classList.remove('hl');},2000);
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.loc');
+    if(!b) return;
+    var id=b.getAttribute('data-loc'); lastRow[id]=b.closest('.pl'); locate(id);
+  });
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    var d=c.getAttribute('data-day'); applyFilter(d==='all'?'all':parseInt(d,10),true);
+  });});
+  bbItin.addEventListener('click',function(){switchView('itin');});
+  bbMap.addEventListener('click',function(){switchView('map');});
+
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</body>
+</html>
