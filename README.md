@@ -8,7 +8,7 @@
 - 大皇宮／玉佛寺：每天 08:30–15:30（15:30 停止入場）。偶有皇室典禮臨時關閉，出發前一週看官網。
 - 臥佛寺 Wat Pho：每天 08:00–18:30。鄭王廟 Wat Arun：每天 08:00–18:00。
 - 水門寺 Wat Paknam：每天 08:00–18:00，免費；玻璃佛塔 5 樓約 17:00 關。
-- 唐人街耀華力路：攤販 18:00 後才擺齊，熱鬧到 23:00；週一多數攤休。
+- 三聘市場 Sampeng Lane：約 08:00–18:00，週日部分店休。唐人街耀華力路：攤販 18:00 後才擺齊，熱鬧到 23:00；週一多數攤休。
 - 恰圖恰週末市集：只有週六、日（約 09:00–18:00）→ 12/26（六）。
 - Jodd Fairs Ratchada 夜市：每天 17:00–01:00。朱拉夜市（Suan Luang Square／Samyan Mitrtown）：每天，17:00 後攤位才齊，Mitrtown 24 小時。
 - 安帕瓦 Amphawa 水上市場：只有週五、六、日下午–晚上 → 12/25（五）可去。
@@ -33,10 +33,11 @@
 - 10:00 出發，MRT Sukhumvit → Sanam Chai（6 站，約 14 分）。
 - 10:30 大皇宮＋玉佛寺（500 THB），長褲有袖。
 - 12:30 午餐：Tha Tian 碼頭旁小店，或步行 15 分到 Thip Samai 炒粿條（週二休）。
-- 14:00 臥佛寺 Wat Pho（300 THB），寺內按摩學校 30 分鐘足療（按摩 ①）。
-- 15:30 Tha Tian 碼頭渡船（5 THB）→ 鄭王廟 Wat Arun（200 THB），下午逆光少、可租泰服。
-- 17:00 渡船回 Tha Tian → 步行 10 分到 MRT Sanam Chai → 2 站到 Wat Mangkon（約 4 分）。
-- 18:00–21:30 唐人街耀華力路：攤位 18:00 後才齊。T&K 海鮮、Nai Ek Roll Noodle、芒果糯米、烤土司、Talat Noi 老街拍照（金佛寺 17:00 關，略過）。
+- 13:30 臥佛寺 Wat Pho（300 THB），寺內按摩學校 30 分鐘足療（按摩 ①）。
+- 15:15 Tha Tian 碼頭渡船（5 THB）→ 鄭王廟 Wat Arun（200 THB），下午逆光少、可租泰服。
+- 16:30 渡船回 Tha Tian → 步行 10 分到 MRT Sanam Chai → 2 站到 Wat Mangkon（約 4 分）。
+- 17:00–18:00 三聘市場 Sampeng Lane（Soi Wanit 1）：批發小物、飾品、布料，多數店 18:00 前收，先逛再吃。
+- 18:00–21:30 唐人街耀華力路：攤位 18:00 後才齊。T&K 海鮮、Nai Ek Roll Noodle、芒果糯米、烤土司、Kaew Boutique 香蘭葉煎餅、Talat Noi 老街拍照（金佛寺 17:00 關，略過）。
 - 21:30 MRT Wat Mangkon → Sukhumvit（4 站，約 10 分），末班約 24:00。
 - 備案：大皇宮臨時關閉 → 改國家博物館（週四開）或 Museum Siam。
 
@@ -57,7 +58,7 @@
 ## Day 4｜12/27（日）Siam 商圈聖誕燈 → ICONSIAM → 人妖秀
 - 10:00 出發，BTS Ratchathewi → Siam 1 站，步行 5 分到 BACC（免費）。
 - 11:30 Siam Paragon B1 美食街午餐／Siam Square 逛。
-- 14:00 沿 Skywalk 走到四面佛 Erawan → CentralWorld 大聖誕樹 → Central Embassy Open House 休息。
+- 14:00 沿 Skywalk 走到四面佛 Erawan → CentralWorld：大聖誕樹、2 樓 SEPHORA（Eden 區）→ Central Embassy Open House 休息。
 - 16:00 BTS Chit Lom → Siam 轉 Silom 線 → Saphan Taksin（約 15 分）→ Sathorn 碼頭 ICONSIAM 免費接駁船（5–10 分）。
 - 16:30 ICONSIAM：Sook Siam 室內水上市場、河畔聖誕燈；18:00 前上 River Park 看日落，晚餐在 Sook Siam 或 6 樓。
 - 20:00 接駁船回 Sathorn → Asiatique 免費船（10 分）。
