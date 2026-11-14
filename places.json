@@ -1,0 +1,266 @@
+[
+ {
+  "id": "dmk",
+  "name": "廊曼機場 Don Mueang (DMK)",
+  "lat": 13.915,
+  "lng": 100.6055,
+  "day": 0
+ },
+ {
+  "id": "dmk-srt",
+  "name": "SRT 紅線 Don Mueang 站",
+  "lat": 13.915,
+  "lng": 100.598,
+  "day": 0
+ },
+ {
+  "id": "jodd",
+  "name": "Jodd Fairs Ratchada 夜市",
+  "lat": 13.7679,
+  "lng": 100.5712,
+  "day": [
+   0,
+   3
+  ]
+ },
+ {
+  "id": "grand-palace",
+  "name": "大皇宮 Grand Palace",
+  "lat": 13.7499,
+  "lng": 100.4916,
+  "day": 1
+ },
+ {
+  "id": "wat-pho",
+  "name": "臥佛寺 Wat Pho",
+  "lat": 13.7464,
+  "lng": 100.4928,
+  "day": 1
+ },
+ {
+  "id": "thipsamai",
+  "name": "Thip Samai 炒粿條",
+  "lat": 13.7528,
+  "lng": 100.5048,
+  "day": 1
+ },
+ {
+  "id": "tha-tian",
+  "name": "Tha Tian 碼頭",
+  "lat": 13.746,
+  "lng": 100.4902,
+  "day": 1
+ },
+ {
+  "id": "wat-arun",
+  "name": "鄭王廟 Wat Arun",
+  "lat": 13.7439,
+  "lng": 100.4884,
+  "day": 1
+ },
+ {
+  "id": "yaowarat",
+  "name": "唐人街 Yaowarat",
+  "lat": 13.7409,
+  "lng": 100.5087,
+  "day": 1
+ },
+ {
+  "id": "maeklong",
+  "name": "美功鐵道市場 Maeklong",
+  "lat": 13.4074,
+  "lng": 99.9985,
+  "day": 2
+ },
+ {
+  "id": "damnoen",
+  "name": "丹嫩莎朵水上市場 Damnoen Saduak",
+  "lat": 13.5202,
+  "lng": 99.9586,
+  "day": 2
+ },
+ {
+  "id": "amphawa",
+  "name": "安帕瓦水上市場 Amphawa",
+  "lat": 13.4251,
+  "lng": 99.9549,
+  "day": 2
+ },
+ {
+  "id": "wat-bang-kung",
+  "name": "Wat Bang Kung 樹包廟",
+  "lat": 13.4456,
+  "lng": 99.9409,
+  "day": 2
+ },
+ {
+  "id": "chatuchak",
+  "name": "恰圖恰週末市集 Chatuchak",
+  "lat": 13.7998,
+  "lng": 100.5504,
+  "day": 3
+ },
+ {
+  "id": "ortorkor",
+  "name": "Or Tor Kor 市場",
+  "lat": 13.7971,
+  "lng": 100.5475,
+  "day": 3
+ },
+ {
+  "id": "bacc",
+  "name": "BACC 曼谷藝術文化中心",
+  "lat": 13.7467,
+  "lng": 100.5302,
+  "day": 4
+ },
+ {
+  "id": "siam-paragon",
+  "name": "Siam Paragon",
+  "lat": 13.7461,
+  "lng": 100.5348,
+  "day": 4
+ },
+ {
+  "id": "erawan",
+  "name": "四面佛 Erawan Shrine",
+  "lat": 13.7443,
+  "lng": 100.5405,
+  "day": 4
+ },
+ {
+  "id": "centralworld",
+  "name": "CentralWorld",
+  "lat": 13.7465,
+  "lng": 100.5391,
+  "day": 4
+ },
+ {
+  "id": "central-embassy",
+  "name": "Central Embassy",
+  "lat": 13.744,
+  "lng": 100.5466,
+  "day": 4
+ },
+ {
+  "id": "sathorn-pier",
+  "name": "Sathorn 碼頭",
+  "lat": 13.7186,
+  "lng": 100.5128,
+  "day": 4
+ },
+ {
+  "id": "iconsiam",
+  "name": "ICONSIAM",
+  "lat": 13.7268,
+  "lng": 100.5104,
+  "day": 4
+ },
+ {
+  "id": "sooksiam",
+  "name": "Sook Siam 室內水上市場",
+  "lat": 13.7264,
+  "lng": 100.5096,
+  "day": 4
+ },
+ {
+  "id": "bigc",
+  "name": "Big C Ratchadamri",
+  "lat": 13.7471,
+  "lng": 100.5412,
+  "day": 5
+ },
+ {
+  "id": "emquartier",
+  "name": "EmQuartier",
+  "lat": 13.7312,
+  "lng": 100.5695,
+  "day": 5
+ },
+ {
+  "id": "ayutthaya",
+  "name": "大城 Ayutthaya 歷史公園",
+  "lat": 14.3506,
+  "lng": 100.557,
+  "day": 2
+ },
+ {
+  "id": "bkk",
+  "name": "蘇凡納布機場 Suvarnabhumi (BKK)",
+  "lat": 13.6819,
+  "lng": 100.7469,
+  "day": 6
+ },
+ {
+  "id": "phaya-thai",
+  "name": "Phaya Thai Airport Rail Link 站",
+  "lat": 13.7567,
+  "lng": 100.5348,
+  "day": 6
+ },
+ {
+  "id": "nh-asoke",
+  "name": "NH Bangkok Asoke（12/23–26）",
+  "lat": 13.7348,
+  "lng": 100.5605,
+  "day": [
+   0,
+   3
+  ]
+ },
+ {
+  "id": "ibis-siam",
+  "name": "ibis Bangkok Siam Ratchathewi（12/26–29）",
+  "lat": 13.7525,
+  "lng": 100.5322,
+  "day": [
+   3,
+   6
+  ]
+ },
+ {
+  "id": "wat-paknam",
+  "name": "水門寺 Wat Paknam",
+  "lat": 13.7218,
+  "lng": 100.4704,
+  "day": 5
+ },
+ {
+  "id": "tofu",
+  "name": "TOFU Skincare Megamart",
+  "lat": 13.7477,
+  "lng": 100.5417,
+  "day": 5
+ },
+ {
+  "id": "samyan",
+  "name": "Samyan Mitrtown（朱拉夜市）",
+  "lat": 13.7334,
+  "lng": 100.5281,
+  "day": [
+   3,
+   5
+  ]
+ },
+ {
+  "id": "suan-luang-sq",
+  "name": "Suan Luang Square 學生夜市",
+  "lat": 13.7427,
+  "lng": 100.5247,
+  "day": 3
+ },
+ {
+  "id": "calypso",
+  "name": "Calypso Cabaret（Asiatique）",
+  "lat": 13.704,
+  "lng": 100.5036,
+  "day": 4
+ },
+ {
+  "id": "wat-mangkon",
+  "name": "MRT Wat Mangkon 站",
+  "lat": 13.7415,
+  "lng": 100.5103,
+  "day": 1
+ }
+]
