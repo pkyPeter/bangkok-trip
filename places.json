@@ -20,6 +20,7 @@
   "lng": 100.5712,
   "day": [
    0,
+   1,
    3
   ]
  },
@@ -28,42 +29,42 @@
   "name": "大皇宮 Grand Palace",
   "lat": 13.7499,
   "lng": 100.4916,
-  "day": 1
+  "day": 4
  },
  {
   "id": "wat-pho",
   "name": "臥佛寺 Wat Pho",
   "lat": 13.7464,
   "lng": 100.4928,
-  "day": 1
+  "day": 4
  },
  {
   "id": "thipsamai",
   "name": "Thip Samai 炒粿條",
   "lat": 13.7528,
   "lng": 100.5048,
-  "day": 1
+  "day": 4
  },
  {
   "id": "tha-tian",
   "name": "Tha Tian 碼頭",
   "lat": 13.746,
   "lng": 100.4902,
-  "day": 1
+  "day": 4
  },
  {
   "id": "wat-arun",
   "name": "鄭王廟 Wat Arun",
   "lat": 13.7439,
   "lng": 100.4884,
-  "day": 1
+  "day": 4
  },
  {
   "id": "yaowarat",
   "name": "唐人街 Yaowarat",
   "lat": 13.7409,
   "lng": 100.5087,
-  "day": 1
+  "day": 4
  },
  {
   "id": "maeklong",
@@ -112,56 +113,49 @@
   "name": "BACC 曼谷藝術文化中心",
   "lat": 13.7467,
   "lng": 100.5302,
-  "day": 4
+  "day": 1
  },
  {
   "id": "siam-paragon",
   "name": "Siam Paragon",
   "lat": 13.7461,
   "lng": 100.5348,
-  "day": 4
+  "day": 1
  },
  {
   "id": "erawan",
   "name": "四面佛 Erawan Shrine",
   "lat": 13.7443,
   "lng": 100.5405,
-  "day": 4
+  "day": 1
  },
  {
   "id": "centralworld",
   "name": "CentralWorld",
   "lat": 13.7465,
   "lng": 100.5391,
-  "day": 4
- },
- {
-  "id": "central-embassy",
-  "name": "Central Embassy",
-  "lat": 13.744,
-  "lng": 100.5466,
-  "day": 4
+  "day": 1
  },
  {
   "id": "sathorn-pier",
   "name": "Sathorn 碼頭",
   "lat": 13.7186,
   "lng": 100.5128,
-  "day": 4
+  "day": 1
  },
  {
   "id": "iconsiam",
   "name": "ICONSIAM",
   "lat": 13.7268,
   "lng": 100.5104,
-  "day": 4
+  "day": 1
  },
  {
   "id": "sooksiam",
   "name": "Sook Siam 室內水上市場",
   "lat": 13.7264,
   "lng": 100.5096,
-  "day": 4
+  "day": 1
  },
  {
   "id": "bigc",
@@ -205,6 +199,8 @@
   "lng": 100.5605,
   "day": [
    0,
+   1,
+   2,
    3
   ]
  },
@@ -215,6 +211,8 @@
   "lng": 100.5322,
   "day": [
    3,
+   4,
+   5,
    6
   ]
  },
@@ -237,10 +235,7 @@
   "name": "Samyan Mitrtown（朱拉夜市）",
   "lat": 13.7334,
   "lng": 100.5281,
-  "day": [
-   3,
-   5
-  ]
+  "day": 3
  },
  {
   "id": "suan-luang-sq",
@@ -254,27 +249,104 @@
   "name": "Calypso Cabaret（Asiatique）",
   "lat": 13.704,
   "lng": 100.5036,
-  "day": 4
+  "day": 1
  },
  {
   "id": "wat-mangkon",
   "name": "MRT Wat Mangkon 站",
   "lat": 13.7415,
   "lng": 100.5103,
-  "day": 1
+  "day": 4
  },
  {
   "id": "sampeng",
   "name": "三聘市場 Sampeng Lane",
   "lat": 13.7405,
   "lng": 100.5046,
-  "day": 1
+  "day": 4
  },
  {
   "id": "sephora-cw",
   "name": "SEPHORA（CentralWorld 2F）",
   "lat": 13.7465,
   "lng": 100.539,
-  "day": 4
+  "day": 1
+ },
+ {
+  "id": "terminal21",
+  "name": "Terminal 21 Asok（Twin Made、4F Poon）",
+  "lat": 13.738,
+  "lng": 100.5604,
+  "day": 1
+ },
+ {
+  "id": "piranya",
+  "name": "Piranya@Siam 奶油冬陰功麵",
+  "lat": 13.744,
+  "lng": 100.5333,
+  "day": 1
+ },
+ {
+  "id": "bakeawish",
+  "name": "Bake a Wish（Siam Square One）鹽可頌",
+  "lat": 13.7448,
+  "lng": 100.534,
+  "day": 1
+ },
+ {
+  "id": "savoey",
+  "name": "Savoey（Mercury Ville Chidlom）",
+  "lat": 13.7434,
+  "lng": 100.5441,
+  "day": 1
+ },
+ {
+  "id": "kaew-chitlom",
+  "name": "Kaew Boutique（Chit Lom）香蘭葉煎餅",
+  "lat": 13.7445,
+  "lng": 100.542,
+  "day": 1
+ },
+ {
+  "id": "paga",
+  "name": "PAGA Microroastery",
+  "lat": 13.7388,
+  "lng": 100.5663,
+  "day": 3
+ },
+ {
+  "id": "bagelbabe",
+  "name": "Bagel Babe",
+  "lat": 13.7239,
+  "lng": 100.5757,
+  "day": 3
+ },
+ {
+  "id": "chinpunsod",
+  "name": "Chin Pun Sod 肉丸",
+  "lat": 13.7999,
+  "lng": 100.5516,
+  "day": 3
+ },
+ {
+  "id": "banthatthong",
+  "name": "朱拉隆功夜市 Banthat Thong 路",
+  "lat": 13.7422,
+  "lng": 100.5241,
+  "day": 3
+ },
+ {
+  "id": "mrjoe",
+  "name": "Kuay Jab Mr. Joe 粿汁",
+  "lat": 13.7092,
+  "lng": 100.5142,
+  "day": 5
+ },
+ {
+  "id": "centralpark",
+  "name": "Central Park Bangkok（Dusit Central Park）",
+  "lat": 13.7288,
+  "lng": 100.5376,
+  "day": 5
  }
 ]
