@@ -22,7 +22,7 @@
 
 ---
 
-> 標記說明：每天條目分兩類。**行程** = 你們自己點名的景點／店家＋必要交通；**口袋｜** 開頭 = 我建議的，等確定再搬進行程。
+> 標記說明：**行程** = 只放時間骨架、交通、住宿、機場等必要動作；**口袋｜** 開頭 = 所有景點與店家（包含你們點名的），等你們確定再自行搬進行程。
 
 ## Day 0｜12/23（三）抵達 → NH Bangkok Asoke
 - 21:30 落地廊曼 DMK → 通關＋領行李約 45–60 分。
@@ -33,69 +33,68 @@
 - 23:30 Check-in（NH 入住 14:00 起，深夜到沒問題）。
 - 口袋｜宵夜：飯店周邊 Soi Cowboy 口小攤、7-Eleven；精神好 MRT 3 站到 Jodd Fairs（到 01:00，末班車 24:00 要注意）。
 
-## Day 1｜12/24（四）Terminal 21 → Siam 商圈 → ICONSIAM → 人妖秀
-- 10:00 出發，走路 5 分到 Terminal 21：Twin Made 拿鐵當早餐、4F Poon（奧菠推薦）。
+## Day 1｜12/24（四）Asok → Siam 商圈 → 河畔
+- 10:00 出發。
+- 口袋｜Terminal 21（走路 5 分）：Twin Made 拿鐵當早餐、4F Poon（奧菠推薦）。
 - 11:00 BTS Asok → Siam（3 站，約 8 分）。
-- 口袋｜11:15 BACC 曼谷藝術文化中心（Siam 站步行 5 分，免費，週四開）。
-- 12:30 午餐 Piranya@Siam（Siam Square Soi 9，奶油冬陰功麵，10:45–20:00）；飯後 Siam Square One 的 Bake a Wish 買鹽可頌。
-- 14:00 Siam Paragon → 四面佛 → CentralWorld：大聖誕樹、2 樓 SEPHORA、5 樓 Puff 鞋、After You 甜點；旁邊 Kaew Boutique（Chit Lom）香蘭葉煎餅。
-- 16:30 早一點的晚餐：Savoey（The Mercury Ville，BTS Chit Lom 旁，海鮮、咖哩蟹，10:00–22:00）。
-- 17:45 BTS Chit Lom → Siam 轉 Silom 線 → Saphan Taksin（約 15 分）→ Sathorn 碼頭 ICONSIAM 免費接駁船（5–10 分）。
-- 18:15 ICONSIAM：河畔聖誕燈。
-- 口袋｜ICONSIAM 內 Sook Siam 室內水上市場、River Park 看夜景。
-- 20:00 接駁船回 Sathorn → Asiatique 免費船（10 分）。
-- 21:00 人妖秀（約 75 分鐘），提前 15 分到；平安夜場要提早訂。
-- 口袋｜人妖秀場地建議 Calypso Cabaret（Asiatique 內，跟 ICONSIAM 同一條河岸最順）；其他選擇 Golden Dome（Ratchada）、Playhouse（Asok）。
-- 22:30 Asiatique 船回 Sathorn → BTS Saphan Taksin → Siam → Asok（約 25 分，末班約 24:00）。
+- 口袋｜BACC 曼谷藝術文化中心（Siam 站步行 5 分，免費，週四開）。
+- 12:30 午餐。
+- 口袋｜午餐 Piranya@Siam（Siam Square Soi 9，奶油冬陰功麵，10:45–20:00）；飯後 Siam Square One 的 Bake a Wish 買鹽可頌。
+- 14:00 Siam／Chit Lom 商圈（步行＋Skywalk）。
+- 口袋｜Siam Paragon、四面佛。
+- 口袋｜CentralWorld：大聖誕樹、2 樓 SEPHORA、5 樓 Puff 鞋、After You 甜點；旁邊 Kaew Boutique（Chit Lom）香蘭葉煎餅。
+- 16:30 晚餐（早一點吃，之後去河邊）。
+- 口袋｜Savoey（The Mercury Ville，BTS Chit Lom 旁，海鮮、咖哩蟹，10:00–22:00）。
+- 17:45 BTS Chit Lom → Siam 轉 Silom 線 → Saphan Taksin（約 15 分）→ Sathorn 碼頭（ICONSIAM 免費接駁船 5–10 分；Asiatique 免費船 10 分）。
+- 口袋｜ICONSIAM：河畔聖誕燈；內有 Sook Siam 室內水上市場、River Park 看夜景。
+- 口袋｜人妖秀 21:00 場（約 75 分鐘，提前 15 分到；平安夜場要提早訂）。場地建議 Calypso Cabaret（Asiatique 內）；其他 Golden Dome（Ratchada）、Playhouse（Asok）。
+- 口袋｜替換：Jodd Fairs（MRT Thailand Cultural Centre）。
+- 22:30 回程：船回 Sathorn → BTS Saphan Taksin → Siam → Asok（約 25 分，末班約 24:00）。
 - 注意：平安夜 ICONSIAM 與 Asiatique 人潮是全年高峰，接駁船多抓 20–30 分鐘。
-- 口袋｜替換：不看秀 → 留在 ICONSIAM 吃晚餐看燈，或 Jodd Fairs（MRT Thailand Cultural Centre）。
 
-## Day 2｜12/25（五）水上市集（待定）
-- 水上市集：以真建議一個就夠。待定：安帕瓦 Amphawa（週五才開，下午到晚上、有螢火蟲）或丹嫩莎朵 Damnoen Saduak（每天，早上）。
+## Day 2｜12/25（五）近郊日（待定）
+- 口袋｜水上市集（以真建議一個就夠）：安帕瓦 Amphawa（週五才開，下午到晚上、有螢火蟲）或丹嫩莎朵 Damnoen Saduak（每天，早上）。
 - 口袋｜草案：06:30 包車 → 08:30 美功鐵道市場 → 10:00 丹嫩莎朵 → 14:00 Wat Bang Kung → 15:00 安帕瓦 → 18:00 螢火蟲船 → 20:00 回曼谷。
 - 口袋｜交通：包車整天 2,500–3,500 THB；一日團 900–1,500 THB/人，通常不含安帕瓦傍晚。
 - 口袋｜替代：大城 Ayutthaya（火車 1.5 小時、租腳踏車）。
 
-## Day 3｜12/26（六）換飯店 → 恰圖恰 → 朱拉隆功夜市
-- 09:00 早餐：PAGA Microroastery（Sukhumvit 31，走路 10 分，08:00–17:00，Mindy 推薦）；或 BTS 2 站到 Phrom Phong 的 Bagel Babe（08:00–18:00）。
+## Day 3｜12/26（六）換飯店 → 北邊 → Siam 周邊
+- 09:00 早餐。
+- 口袋｜PAGA Microroastery（Sukhumvit 31，走路 10 分，08:00–17:00，Mindy 推薦）；或 BTS 2 站到 Phrom Phong 的 Bagel Babe（08:00–18:00）。
 - 10:00 NH 退房，Grab 帶行李到 ibis Siam Ratchathewi 寄放（約 15–20 分、約 100 THB；ibis 入住 14:00）。
 - 10:45 BTS Ratchathewi → Mo Chit（7 站，約 15 分）。
-- 11:00–14:00 恰圖恰週末市集；市集外 Phahon Yothin 路邊 Chin Pun Sod 現做肉丸（週六 10:00–20:00，7 顆 35 THB）。
+- 口袋｜11:00–14:00 恰圖恰週末市集（只有週六日）；市集外 Phahon Yothin 路邊 Chin Pun Sod 現做肉丸（週六 10:00–20:00，7 顆 35 THB）。
 - 口袋｜恰圖恰逛法：Section 2–4 設計小物，熱了進 JJ Mall；Coco JJ 椰子冰；午餐 Or Tor Kor 市場（步行 5 分）。
 - 14:30 BTS 回 Ratchathewi，ibis 正式入住、休息。
-- 16:00 泰式按摩 ①，2 小時，前一天預約。
-- 口袋｜按摩店：Let's Relax Siam Square One（BTS Siam 1 站）或 Health Land Sathorn。
-- 18:30 朱拉隆功夜市（Banthat Thong 路小吃街）：BTS Siam → National Stadium 步行 12 分，或 MRT Sam Yan 步行 10 分。
-- 口袋｜旁邊 Suan Luang Square 學生市集、Samyan Mitrtown（24 小時）。
+- 口袋｜16:00 泰式按摩 2 小時（前一天預約）：Let's Relax Siam Square One（BTS Siam 1 站）或 Health Land Sathorn。
+- 口袋｜18:30 朱拉隆功夜市（Banthat Thong 路小吃街）：BTS Siam → National Stadium 步行 12 分，或 MRT Sam Yan 步行 10 分；旁邊 Suan Luang Square 學生市集、Samyan Mitrtown（24 小時）。
 - 口袋｜替代：Jodd Fairs Ratchada（BTS Asok 轉 MRT Thailand Cultural Centre，約 30 分）。
 
-## Day 4｜12/27（日）舊城三大寺 → 三聘 → 晚上唐人街
-- 10:00 出發，Grab 直達大皇宮約 20 分（週日早上不塞）；或 BTS Ratchathewi → Siam → Sala Daeng 轉 MRT Si Lom → Sanam Chai 約 30 分。
-- 10:30 大皇宮＋玉佛寺（500 THB），長褲有袖。
+## Day 4｜12/27（日）舊城區 → 唐人街
+- 10:00 出發：Grab 直達舊城區約 20 分（週日早上不塞）；或 BTS Ratchathewi → Siam → Sala Daeng 轉 MRT Si Lom → Sanam Chai 約 30 分。
+- 口袋｜大皇宮＋玉佛寺（500 THB，08:30–15:30，長褲有袖）。
 - 12:30 午餐。
-- 口袋｜午餐選項：Tha Tian 碼頭旁小店，或步行 15 分到 Thip Samai 炒粿條（週日有開）。
-- 13:30 臥佛寺 Wat Pho（300 THB）。
-- 口袋｜臥佛寺內按摩學校 30 分鐘足療（可算按摩 ②）。
-- 15:15 Tha Tian 碼頭渡船（5 THB）→ 鄭王廟 Wat Arun（200 THB）。
+- 口袋｜Tha Tian 碼頭旁小店，或步行 15 分到 Thip Samai 炒粿條（週日有開）。
+- 口袋｜臥佛寺 Wat Pho（300 THB）；寺內按摩學校 30 分鐘足療。
+- 口袋｜Tha Tian 碼頭渡船（5 THB）→ 鄭王廟 Wat Arun（200 THB，到 18:00）。
 - 16:30 渡船回 Tha Tian → 步行 10 分到 MRT Sanam Chai → 2 站到 Wat Mangkon（約 4 分）。
-- 17:00–18:00 三聘市場 Sampeng Lane（Soi Wanit 1）：批發小物、飾品、布料；週日部分批發店休，零售攤仍多，18:00 前收。
-- 18:00–21:30 唐人街耀華力路：攤位 18:00 後才齊，時間留長。
-- 口袋｜唐人街吃什麼：T&K 海鮮、Nai Ek Roll Noodle、芒果糯米、烤土司；Talat Noi 老街拍照。
+- 口袋｜17:00–18:00 三聘市場 Sampeng Lane（Soi Wanit 1）：批發小物、飾品、布料；週日部分批發店休，18:00 前收。
+- 口袋｜18:00–21:30 唐人街耀華力路：攤位 18:00 後才齊，時間留長。T&K 海鮮、Nai Ek Roll Noodle、芒果糯米、烤土司；Talat Noi 老街拍照。
 - 21:30 MRT Wat Mangkon → Si Lom 轉 BTS Sala Daeng → Siam → Ratchathewi（約 25 分），末班約 24:00。
 - 口袋｜備案：大皇宮臨時關閉 → 改 Museum Siam（週日開）。
 
-## Day 5｜12/28（一）水門寺 → 粿汁 → Central Park → Big C＋TOFU → EmSphere
+## Day 5｜12/28（一）西南邊 → Silom → Chit Lom → Phrom Phong
 - 10:00 出發，BTS Ratchathewi → Siam 轉 Silom 線 → Bang Wa（約 30 分）→ MRT Bang Wa → Bang Phai 2 站 → 步行 10 分。
-- 11:00 水門寺 Wat Paknam：69 公尺大佛、綠玻璃佛塔（5 樓），免費，約 1 小時。
-- 12:15 Grab 約 20 分到 Kuay Jab Mr. Joe（Thanon Chan，粿汁＋脆皮燒肉，07:30–16:30），午餐。
-- 13:45 Grab 10 分到 Central Park Bangkok（Dusit Central Park，MRT Si Lom／BTS Sala Daeng 直通）：B1 Kaew Boutique 香蘭葉煎餅。
-- 口袋｜Central Park 4–7 樓空中花園看 Lumpini 公園。
-- 15:30 BTS Sala Daeng → Chit Lom（2 站）。Big C Ratchadamri＋隔壁 Platinum Pop 3 樓 TOFU Skincare Megamart（開到 24:00）。
-- 口袋｜Big C 採買清單：零食、小老闆海苔、手標奶茶；退稅要開 P.P.10。
-- 18:00 BTS Chit Lom → Phrom Phong（3 站）：EmSphere，晚餐在美食區。
-- 口袋｜隔壁 EmQuartier 聖誕森林燈。
-- 20:00 泰式按摩 ②，2 小時。
-- 口袋｜按摩店：Phrom Phong 一帶 Let's Relax／Health Land。
+- 口袋｜水門寺 Wat Paknam：69 公尺大佛、綠玻璃佛塔（5 樓），免費，約 1 小時。
+- 12:15 午餐（Grab 約 20 分到 Thanon Chan 一帶）。
+- 口袋｜Kuay Jab Mr. Joe（Thanon Chan，粿汁＋脆皮燒肉，07:30–16:30）。
+- 13:45 Grab 10 分到 Silom（MRT Si Lom／BTS Sala Daeng）。
+- 口袋｜Central Park Bangkok（Dusit Central Park）：B1 Kaew Boutique 香蘭葉煎餅；4–7 樓空中花園看 Lumpini 公園。
+- 15:30 BTS Sala Daeng → Chit Lom（2 站）。
+- 口袋｜Big C Ratchadamri＋隔壁 Platinum Pop 3 樓 TOFU Skincare Megamart（開到 24:00）。採買：零食、小老闆海苔、手標奶茶；退稅要開 P.P.10。
+- 18:00 BTS Chit Lom → Phrom Phong（3 站），晚餐。
+- 口袋｜EmSphere 美食區晚餐；隔壁 EmQuartier 聖誕森林燈。
+- 口袋｜20:00 泰式按摩 2 小時：Phrom Phong 一帶 Let's Relax／Health Land。
 - 22:00 BTS 回 Ratchathewi（6 站，約 14 分），打包；確認護照、TDAC、退稅單。
 - 週一 BACC、Museum Siam、國家博物館休館；Bagel Babe 週一休。
 
